@@ -5,7 +5,7 @@ const PokemonCard = (props: any) => {
     <div>
       <div className={pokemoncardStyles.cardContainer}>
         <div className={pokemoncardStyles.imageDetails}>
-          <img src={props.image} alt="Pkemon Image" />
+          <img src={props.image} alt="Pokemon Image" />
         </div>
         <div className={pokemoncardStyles.cardDetails}>
           <h3>Squirtle</h3>
