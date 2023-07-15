@@ -1,0 +1,40 @@
+.parallaxContainer {
+  margin: 0;
+  padding: 0;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.parallaxHeader {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 30vw 0 5vw;
+  position: relative;
+  transform-style: inherit;
+  width: 100vw;
+}
+
+.parallaxHeader h1 {
+  margin-top: -100px;
+}
+
+.parallaxHeader,
+.parallaxHeader:before {
+  background: 50% 50% cover;
+}
+
+.parallaxHeader {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  background-image: url(../../assets/images/pokemon.jpeg);
+  background-size: cover;
+}

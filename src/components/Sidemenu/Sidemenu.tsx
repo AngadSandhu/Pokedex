@@ -26,13 +26,19 @@ const Sidemenu = () => {
       >
         <ul>
           <li>
-            <Link to="/home">Home</Link>
+            <Link to="/" onClick={() => setMenuToggle(!menuToggle)}>
+              Home
+            </Link>
           </li>
           <li>
-            <div>Pokemon</div>
+            <Link to="/pokemon" onClick={() => setMenuToggle(!menuToggle)}>
+              Pokemon
+            </Link>
           </li>
           <li>
-            <div>About</div>
+            <Link to="/about" onClick={() => setMenuToggle(!menuToggle)}>
+              About
+            </Link>
           </li>
         </ul>
       </div>
