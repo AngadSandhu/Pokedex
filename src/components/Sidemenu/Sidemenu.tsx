@@ -26,7 +26,7 @@ const Sidemenu = () => {
       >
         <ul>
           <li>
-            <div>Home</div>
+            <Link to="/home">Home</Link>
           </li>
           <li>
             <div>Pokemon</div>
