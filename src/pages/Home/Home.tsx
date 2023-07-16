@@ -5,10 +5,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <ParallaxScroller />
-      <div>
-        Welcome to Pokemon App
-        <p>In progress..</p>
-      </div>
+      <div></div>
     </React.Fragment>
   );
 };

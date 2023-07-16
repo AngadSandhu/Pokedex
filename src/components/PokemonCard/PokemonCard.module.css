@@ -11,3 +11,7 @@
 .waterType {
   background-color: skyblue;
 }
+
+.cardContainer:hover {
+  transform: translate(-10px, -10px);
+}
