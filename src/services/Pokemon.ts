@@ -14,4 +14,4 @@ const getPokemonDetails = (name: String) => {
   return axios.get("https://pokeapi.co/api/v2/pokemon/" + name);
 };
 
-module.exports = { getPokemon, getPokemonByType, getPokemonDetails };
+export { getPokemon, getPokemonByType, getPokemonDetails };

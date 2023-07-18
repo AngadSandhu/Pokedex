@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import pokemoncardStyles from "./PokemonCard.module.css";
 
 const PokemonCard = (props: any) => {
+  useEffect(() => {}, []);
   return (
-    <div style={{ marginLeft: "50%" }}>
+    <div>
       <div className={pokemoncardStyles.cardContainer}>
         <div className={pokemoncardStyles.imageDetails}>
           <img src={props.image} alt="Pokemon Image" />
