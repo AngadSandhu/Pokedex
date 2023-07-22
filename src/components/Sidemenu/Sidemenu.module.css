@@ -43,6 +43,7 @@
   font-size: 18px;
   opacity: 10;
   vertical-align: middle !important;
+  border: 3px solid black;
 }
 
 .sidemenuContainer li > a {

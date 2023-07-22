@@ -1,8 +1,10 @@
 .listContainer {
   display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
+  flex-wrap: wrap;
   overflow: scroll;
-  margin: 3%;
+  margin-left: 5%;
   padding: 3%;
+  width: 100%;
+  row-gap: 10px;
+  column-gap: 10px;
 }
