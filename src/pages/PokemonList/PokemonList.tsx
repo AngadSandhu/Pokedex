@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import listStyles from "./PokemonList.module.css";
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
 import * as PokemonService from "../../services/Pokemon";
-import PokemonCardInterface from "../../models/PokemonCard";
+import PokemonTile from "../../components/PokemonTile/PokemonTile";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -18,7 +17,9 @@ const PokemonList = () => {
   return (
     <div className={listStyles.listContainer}>
       {pokemonList &&
-        pokemonList.map((pokemon, id) => <PokemonCard key={id} />)}
+        pokemonList.map((pokemon: any, id: number) => (
+          <PokemonTile key={id} image={pokemon.url} name={pokemon.name} />
+        ))}
     </div>
   );
 };
