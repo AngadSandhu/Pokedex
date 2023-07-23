@@ -18,7 +18,7 @@ const PokemonList = () => {
     <div className={listStyles.listContainer}>
       {pokemonList &&
         pokemonList.map((pokemon: any, id: number) => (
-          <PokemonTile key={id} image={pokemon.url} name={pokemon.name} />
+          <PokemonTile id={id} url={pokemon.url} name={pokemon.name} />
         ))}
     </div>
   );

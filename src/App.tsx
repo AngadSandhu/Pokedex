@@ -20,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/pokemon" element={<PokemonList />} />
           <Route path="/about" element={<About />} />
+          <Route path="/details:id" element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>
