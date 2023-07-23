@@ -8,6 +8,7 @@ import Sidemenu from "./components/Sidemenu/Sidemenu";
 import Home from "./pages/Home/Home";
 import PokemonList from "./pages/PokemonList/PokemonList";
 import About from "./pages/About/About";
+import PokemonDetail from "./pages/PokemonDetail/PokemonDetail";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/pokemon" element={<PokemonList />} />
           <Route path="/about" element={<About />} />
-          <Route path="/details:id" element={<About />} />
+          <Route path="/details:id" element={<PokemonDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

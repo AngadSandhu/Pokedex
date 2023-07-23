@@ -1,0 +1,11 @@
+.layout {
+  display: flex;
+}
+
+.imageHolder {
+  background-color: cornflowerblue;
+}
+
+.details {
+  background-color: beige;
+}
