@@ -8,7 +8,7 @@ const PokemonDetail = (props: any) => {
   return (
     <div className={componentStyles.layout}>
       <div className={componentStyles.imageHolder}></div>
-      <div></div>
+      <div>Hello</div>
     </div>
   );
 };
