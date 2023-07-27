@@ -4,8 +4,11 @@
 
 .imageHolder {
   background-color: cornflowerblue;
+  width: 100%;
+  min-height: 100%;
 }
 
 .details {
   background-color: beige;
+  width: 100%;
 }

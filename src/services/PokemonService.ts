@@ -10,8 +10,8 @@ const getPokemonByType = (number: Number) => {
   return axios.get("https://pokeapi.co/api/v2/type/" + number);
 };
 
-const getPokemonDetails = (name: String) => {
-  return axios.get("https://pokeapi.co/api/v2/pokemon/" + name);
+const getPokemonDetails = (id: String | Number) => {
+  return axios.get("https://pokeapi.co/api/v2/pokemon/" + id);
 };
 
 export { getPokemon, getPokemonByType, getPokemonDetails };

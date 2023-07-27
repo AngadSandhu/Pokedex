@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import listStyles from "./PokemonList.module.css";
-import * as PokemonService from "../../services/Pokemon";
+import * as PokemonService from "../../services/PokemonService";
 import PokemonTile from "../../components/PokemonTile/PokemonTile";
 
 const PokemonList = () => {
@@ -18,7 +18,7 @@ const PokemonList = () => {
     <div className={listStyles.listContainer}>
       {pokemonList &&
         pokemonList.map((pokemon: any, id: number) => (
-          <PokemonTile id={id} url={pokemon.url} name={pokemon.name} />
+          <PokemonTile key={id} id={id} url={pokemon.url} name={pokemon.name} />
         ))}
     </div>
   );
