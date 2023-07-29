@@ -1,18 +1,42 @@
 .layout {
   display: flex;
+  height: calc(100vh - 100px) !important;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .imageHolder {
   background-color: cornflowerblue;
   width: 50%;
-  min-height: 100%;
 }
 
 .details {
-  background-color: beige;
+  background-color: white;
   width: 50%;
 }
 
 .textCenter {
   text-align: center;
+}
+
+.pokeCard {
+  height: 70%;
+  width: 50%;
+  margin: 10% auto;
+  background-color: beige;
+  box-shadow: 10px 10px 10px darkgrey;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .imageHolder {
+    width: 100%;
+  }
+
+  .details {
+    width: 100%;
+  }
 }

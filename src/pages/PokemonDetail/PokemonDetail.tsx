@@ -12,7 +12,7 @@ const PokemonDetail = (props: any) => {
   const [details, setDetails] = useState<PokemonDetailModel>();
   const routeParams = useParams();
   useEffect(() => {
-    getPokemonDetails(25).then((response) => {
+    getPokemonDetails(27).then((response) => {
       console.log(response.data);
       let data: PokemonDetailModel = response.data;
       setDetails(data);
@@ -32,7 +32,9 @@ const PokemonDetail = (props: any) => {
           )}
       </div>
       <div className={componentStyles.details}>
-        <h1>{details?.name ? details.name.toUpperCase() : null}</h1>
+        <div className={componentStyles.pokeCard}>
+          <h1>{details?.name ? details.name.toUpperCase() : null}</h1>
+        </div>
       </div>
     </div>
   );
