@@ -6,10 +6,13 @@ export default interface PokemonDetailModel {
   height: number;
   held_items: any;
   id: number;
+  is_default: boolean;
+  location_area_encounters: any;
   moves: Array<any>;
   name: string;
   order: number;
-  is_default: boolean;
+  past_types: any;
+  species: any;
   sprites: any;
   stats: Array<any>;
   types: Array<any>;

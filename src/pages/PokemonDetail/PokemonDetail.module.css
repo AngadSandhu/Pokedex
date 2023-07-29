@@ -4,11 +4,15 @@
 
 .imageHolder {
   background-color: cornflowerblue;
-  width: 100%;
+  width: 50%;
   min-height: 100%;
 }
 
 .details {
   background-color: beige;
-  width: 100%;
+  width: 50%;
+}
+
+.textCenter {
+  text-align: center;
 }
