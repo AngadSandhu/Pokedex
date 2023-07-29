@@ -4,6 +4,10 @@ import componentStyles from "./PokemonDetail.module.css";
 import { getPokemonDetails } from "../../services/PokemonService";
 import PokemonDetailModel from "../../models/PokemonDetailModel";
 
+interface PropTypes {
+  url: String;
+}
+
 const PokemonDetail = (props: any) => {
   const [details, setDetails] = useState<PokemonDetailModel>();
   const routeParams = useParams();
@@ -17,7 +21,15 @@ const PokemonDetail = (props: any) => {
   return (
     <div className={componentStyles.layout}>
       <div className={componentStyles.imageHolder}>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png" />
+        {details &&
+          details?.sprites &&
+          details?.sprites?.other &&
+          details?.sprites?.other?.home && (
+            <img
+              alt="Pokemon Image"
+              src={details.sprites.other.home.front_default}
+            />
+          )}
       </div>
       <div className={componentStyles.details}>
         <h1>{details?.name ? details.name.toUpperCase() : null}</h1>
