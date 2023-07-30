@@ -20,11 +20,17 @@
 }
 
 .pokeCard {
-  height: 70%;
-  width: 50%;
-  margin: 10% auto;
+  height: 80%;
+  width: 60%;
+  margin: 8% auto;
   background-color: beige;
   box-shadow: 10px 10px 10px darkgrey;
+}
+
+.contentBorder {
+  border: 3px solid black;
+  margin: 0 2%;
+  height: 100%;
 }
 
 @media (max-width: 900px) {

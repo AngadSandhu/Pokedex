@@ -33,7 +33,9 @@ const PokemonDetail = (props: any) => {
       </div>
       <div className={componentStyles.details}>
         <div className={componentStyles.pokeCard}>
-          <h1>{details?.name ? details.name.toUpperCase() : null}</h1>
+          <div className={componentStyles.contentBorder}>
+            <h2>{details?.name ? details.name.toUpperCase() : null}</h2>
+          </div>
         </div>
       </div>
     </div>

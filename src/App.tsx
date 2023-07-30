@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import PokemonList from "./pages/PokemonList/PokemonList";
 import About from "./pages/About/About";
 import PokemonDetail from "./pages/PokemonDetail/PokemonDetail";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -20,8 +21,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pokemon" element={<PokemonList />} />
-          <Route path="/details" element={<PokemonDetail />} />
+          <Route path="/details/:id" element={<PokemonDetail />} />
+          {/* <Route path="/details" element={<PokemonDetail />} /> */}
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
