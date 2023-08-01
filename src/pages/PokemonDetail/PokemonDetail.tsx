@@ -8,16 +8,18 @@ interface PropTypes {
   url: String;
 }
 
-const PokemonDetail = (props: any) => {
+const PokemonDetail = () => {
   const [details, setDetails] = useState<PokemonDetailModel>();
   const routeParams = useParams();
   useEffect(() => {
-    getPokemonDetails(27).then((response) => {
-      console.log(response.data);
-      let data: PokemonDetailModel = response.data;
-      setDetails(data);
-    });
-  }, []);
+    if (routeParams.id) {
+      getPokemonDetails(routeParams?.id).then((response) => {
+        console.log(response.data, routeParams);
+        let data: PokemonDetailModel = response.data;
+        setDetails(data);
+      });
+    }
+  }, [routeParams.id]);
   return (
     <div className={componentStyles.layout}>
       <div className={componentStyles.imageHolder}>
