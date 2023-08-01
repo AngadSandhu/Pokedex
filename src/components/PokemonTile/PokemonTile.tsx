@@ -17,7 +17,7 @@ const PokemonTile = (props: any) => {
   const navigate = useNavigate();
   const getPokemonDetails = () => {
     let id = parseInt(props?.id);
-    navigate(`details?id=${id + 1}`);
+    navigate(`/pokemon/id=${id + 1}`);
   };
   return (
     <div style={styles} onClick={() => getPokemonDetails()}>

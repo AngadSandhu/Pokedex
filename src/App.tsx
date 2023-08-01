@@ -20,9 +20,9 @@ function App() {
         <Sidemenu />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pokemon" element={<PokemonList />} />
-          <Route path="/details/:id" element={<PokemonDetail />} />
+          <Route path="pokemon" element={<PokemonList />} />
           {/* <Route path="/details" element={<PokemonDetail />} /> */}
+          <Route path="pokemon/id=:id" element={<PokemonDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
