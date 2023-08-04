@@ -15,12 +15,20 @@ const PokemonList = () => {
   }, []);
 
   return (
-    <div className={listStyles.listContainer}>
-      {pokemonList &&
-        pokemonList.map((pokemon: any, id: number) => (
-          <PokemonTile key={id} id={id} url={pokemon.url} name={pokemon.name} />
-        ))}
-    </div>
+    <React.Fragment>
+      <div>Button controls go here</div>
+      <div className={listStyles.listContainer}>
+        {pokemonList &&
+          pokemonList.map((pokemon: any, id: number) => (
+            <PokemonTile
+              key={id}
+              id={id}
+              url={pokemon.url}
+              name={pokemon.name}
+            />
+          ))}
+      </div>
+    </React.Fragment>
   );
 };
 
