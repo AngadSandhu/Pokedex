@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import listStyles from "./PokemonList.module.css";
 import * as PokemonService from "../../services/PokemonService";
 import PokemonTile from "../../components/PokemonTile/PokemonTile";
+import ButtonDock from "../../components/ButtonDock/ButtonDock";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -17,6 +18,7 @@ const PokemonList = () => {
   return (
     <React.Fragment>
       <div>Button controls go here</div>
+      <ButtonDock></ButtonDock>
       <div className={listStyles.listContainer}>
         {pokemonList &&
           pokemonList.map((pokemon: any, id: number) => (
