@@ -5,4 +5,9 @@
 .bdButton {
   border-radius: 5px;
   box-shadow: 5px 5px 5px gray;
+  background-color: rgb(78, 120, 210);
+  color: orangered;
+  height: 40px;
+  width: 50px;
+  border: 2px solid black;
 }
