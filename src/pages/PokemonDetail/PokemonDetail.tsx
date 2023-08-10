@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import componentStyles from "./PokemonDetail.module.css";
 import { getPokemonDetails } from "../../services/PokemonService";
 import PokemonDetailModel from "../../models/PokemonDetailModel";
-import { Icon } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWeightScale } from "@fortawesome/free-solid-svg-icons";
+import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
 
 interface PropTypes {
   url: String;
@@ -43,13 +45,17 @@ const PokemonDetail = () => {
             <h2>{details?.name ? details.name.toUpperCase() : null}</h2>
             <hr />
             <div className={componentStyles.rowContent}>
-              <div>Weight</div>
+              <div>
+                <FontAwesomeIcon icon={faWeightScale} /> Weight
+              </div>
               <div>
                 {details?.weight ? details.weight : null} {WEIGHT}
               </div>
             </div>
             <div className={componentStyles.rowContent}>
-              <div>Height</div>
+              <div>
+                <FontAwesomeIcon icon={faRulerVertical} /> Height
+              </div>
               <div>
                 {details?.height ? details.height : null} {HEIGHT}{" "}
               </div>

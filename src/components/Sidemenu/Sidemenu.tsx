@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 import sidemenuStyles from "./Sidemenu.module.css";
 import Pokeball from "../../assets/images/Pokeball.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleDot } from "@fortawesome/free-solid-svg-icons";
+import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 
 const Sidemenu = () => {
   const [menuToggle, setMenuToggle] = useState(false);
@@ -27,17 +31,17 @@ const Sidemenu = () => {
         <ul>
           <li>
             <Link to="/" onClick={() => setMenuToggle(!menuToggle)}>
-              Home
+              <FontAwesomeIcon icon={faHome} /> Home
             </Link>
           </li>
           <li>
             <Link to="/pokemon" onClick={() => setMenuToggle(!menuToggle)}>
-              Pokemon
+              <FontAwesomeIcon icon={faCircleDot} /> Pokemon
             </Link>
           </li>
           <li>
             <Link to="/about" onClick={() => setMenuToggle(!menuToggle)}>
-              About
+              <FontAwesomeIcon icon={faFileLines} /> About
             </Link>
           </li>
         </ul>
