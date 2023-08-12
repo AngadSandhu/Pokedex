@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import componentStyles from "./PokemonDetail.module.css";
 import { getPokemonDetails } from "../../services/PokemonService";
@@ -16,13 +16,22 @@ const WEIGHT = "Kilograms";
 
 const PokemonDetail = () => {
   const [details, setDetails] = useState<PokemonDetailModel>();
+  const [statsMap, setStatsMap] = useState([]);
   const routeParams = useParams();
+
+  const pokemonStats = useCallback(() => {
+    details?.stats.forEach((stat: any, i: number) => {
+      console.log(stat);
+    });
+  }, [details]);
+
   useEffect(() => {
     if (routeParams.id) {
       getPokemonDetails(routeParams?.id).then((response) => {
         console.log(response.data, routeParams);
         let data: PokemonDetailModel = response.data;
         setDetails(data);
+        pokemonStats();
       });
     }
   }, [routeParams.id]);
@@ -49,7 +58,7 @@ const PokemonDetail = () => {
                 <FontAwesomeIcon icon={faWeightScale} /> Weight
               </div>
               <div>
-                {details?.weight ? details.weight : null} {WEIGHT}
+                {details?.weight ? details.weight / 10 : null} {WEIGHT}
               </div>
             </div>
             <div className={componentStyles.rowContent}>
@@ -57,7 +66,7 @@ const PokemonDetail = () => {
                 <FontAwesomeIcon icon={faRulerVertical} /> Height
               </div>
               <div>
-                {details?.height ? details.height : null} {HEIGHT}{" "}
+                {details?.height ? details.height / 10 : null} {HEIGHT}{" "}
               </div>
             </div>
           </div>
