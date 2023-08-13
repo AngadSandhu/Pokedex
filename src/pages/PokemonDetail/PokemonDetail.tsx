@@ -16,22 +16,27 @@ const WEIGHT = "Kilograms";
 
 const PokemonDetail = () => {
   const [details, setDetails] = useState<PokemonDetailModel>();
-  const [statsMap, setStatsMap] = useState([]);
+  const [statsMap, setStatsMap] = useState<{}>({});
   const routeParams = useParams();
 
-  const pokemonStats = useCallback(() => {
-    details?.stats.forEach((stat: any, i: number) => {
-      console.log(stat);
+  const pokemonStats = useCallback((stats: any) => {
+    const statsMap = new Map();
+    stats?.forEach((statDetails: any, i: number) => {
+      let keyName = statDetails.stat?.name,
+        value = statDetails.base_stat;
+      statsMap.set(keyName, value);
+      console.log(statsMap);
+      setStatsMap(Object.fromEntries(statsMap));
     });
-  }, [details]);
+  }, []);
 
   useEffect(() => {
     if (routeParams.id) {
       getPokemonDetails(routeParams?.id).then((response) => {
         console.log(response.data, routeParams);
         let data: PokemonDetailModel = response.data;
+        pokemonStats(data?.stats);
         setDetails(data);
-        pokemonStats();
       });
     }
   }, [routeParams.id]);
@@ -69,6 +74,12 @@ const PokemonDetail = () => {
                 {details?.height ? details.height / 10 : null} {HEIGHT}{" "}
               </div>
             </div>
+            {Object.keys(statsMap).length > 0 && (
+              <div className={componentStyles.rowContent}>
+                <div>Stats:</div>
+                <div>{JSON.stringify(statsMap)}</div>
+              </div>
+            )}
           </div>
         </div>
       </div>
