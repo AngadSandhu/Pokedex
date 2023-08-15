@@ -11,6 +11,15 @@ interface PropTypes {
   url: String;
 }
 
+interface PokemonStats {
+  hp: String;
+  attack: String;
+  defense: String;
+  specialAttack: String;
+  specialDefense: String;
+  speed: number;
+}
+
 const HEIGHT = "Metres";
 const WEIGHT = "Kilograms";
 
@@ -55,32 +64,33 @@ const PokemonDetail = () => {
       </div>
       <div className={componentStyles.details}>
         <div className={componentStyles.pokeCard}>
-          <div className={componentStyles.contentBorder}>
-            <h2>{details?.name ? details.name.toUpperCase() : null}</h2>
-            <hr />
-            <div className={componentStyles.rowContent}>
-              <div>
-                <FontAwesomeIcon icon={faWeightScale} /> Weight
-              </div>
-              <div>
-                {details?.weight ? details.weight / 10 : null} {WEIGHT}
-              </div>
+          <h2>{details?.name ? details.name.toUpperCase() : null}</h2>
+          <hr />
+          <div className={componentStyles.rowContent}>
+            <div>
+              <FontAwesomeIcon icon={faWeightScale} /> Weight
             </div>
-            <div className={componentStyles.rowContent}>
-              <div>
-                <FontAwesomeIcon icon={faRulerVertical} /> Height
-              </div>
-              <div>
-                {details?.height ? details.height / 10 : null} {HEIGHT}{" "}
-              </div>
+            <div>
+              {details?.weight ? details.weight / 10 : null} {WEIGHT}
             </div>
-            {Object.keys(statsMap).length > 0 && (
-              <div className={componentStyles.rowContent}>
-                <div>Stats:</div>
-                <div>{JSON.stringify(statsMap)}</div>
-              </div>
-            )}
           </div>
+          <div className={componentStyles.rowContent}>
+            <div>
+              <FontAwesomeIcon icon={faRulerVertical} /> Height
+            </div>
+            <div>
+              {details?.height ? details.height / 10 : null} {HEIGHT}{" "}
+            </div>
+          </div>
+          <br />
+          <p>STATS</p>
+          {Object.keys(statsMap).length > 0 &&
+            Object.keys(statsMap).map((key: any, i) => (
+              <div key={i} className={componentStyles.rowContent}>
+                <div>{key}</div>
+                <div></div>
+              </div>
+            ))}
         </div>
       </div>
     </div>
