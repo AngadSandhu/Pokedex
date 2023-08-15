@@ -6,26 +6,20 @@ import PokemonDetailModel from "../../models/PokemonDetailModel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWeightScale } from "@fortawesome/free-solid-svg-icons";
 import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
+import { faShield } from "@fortawesome/free-solid-svg-icons";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
+import { faFan } from "@fortawesome/free-solid-svg-icons";
+import { faShieldCat } from "@fortawesome/free-solid-svg-icons";
+import { faGaugeHigh } from "@fortawesome/free-solid-svg-icons";
+import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 
-interface PropTypes {
-  url: String;
-}
-
-interface PokemonStats {
-  hp: String;
-  attack: String;
-  defense: String;
-  specialAttack: String;
-  specialDefense: String;
-  speed: number;
-}
-
+const icons = [faBolt, faFan, faShield, faChessKing, faShieldCat, faGaugeHigh];
 const HEIGHT = "Metres";
 const WEIGHT = "Kilograms";
 
 const PokemonDetail = () => {
   const [details, setDetails] = useState<PokemonDetailModel>();
-  const [statsMap, setStatsMap] = useState<{}>({});
+  const [statsMap, setStatsMap] = useState<any>({});
   const routeParams = useParams();
 
   const pokemonStats = useCallback((stats: any) => {
@@ -87,8 +81,10 @@ const PokemonDetail = () => {
           {Object.keys(statsMap).length > 0 &&
             Object.keys(statsMap).map((key: any, i) => (
               <div key={i} className={componentStyles.rowContent}>
-                <div>{key}</div>
-                <div></div>
+                <div>
+                  <FontAwesomeIcon icon={icons[i]} /> {key.toUpperCase()}
+                </div>
+                <div>{statsMap[key]}</div>
               </div>
             ))}
         </div>
