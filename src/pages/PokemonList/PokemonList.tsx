@@ -8,7 +8,7 @@ const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
-    PokemonService.getPokemon(0).then((response) => {
+    PokemonService.getPokemon(50, 0).then((response) => {
       if (response && response?.data) {
         setPokemonList(response?.data?.results);
       }

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getPokemon = (offset: Number) => {
+const getPokemon = (limit: Number, offset: Number) => {
   return axios.get(
-    "https://pokeapi.co/api/v2/pokemon?limit=100&offset=" + offset
+    "https://pokeapi.co/api/v2/pokemon?limit=" + limit + "&offset=" + offset
   );
 };
 
