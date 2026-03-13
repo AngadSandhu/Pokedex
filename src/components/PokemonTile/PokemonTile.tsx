@@ -1,6 +1,7 @@
+import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
-const styles = {
+const styles: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   backgroundColor: "white",
@@ -12,20 +13,25 @@ const styles = {
   fontWeight: "700",
 };
 
-const PokemonTile = (props: any) => {
+type PokemonTileProps = {
+  id: number;
+  name: string;
+  url?: string;
+};
+
+const PokemonTile = ({ id, name }: PokemonTileProps) => {
   const navigate = useNavigate();
   const getPokemonDetails = () => {
-    let id = parseInt(props?.id);
-    navigate(`/pokemon/id=${id + 1}`);
+    navigate(`/pokemon/id=${id}`);
   };
   return (
-    <div style={styles} onClick={() => getPokemonDetails()}>
-      <div>{props.name && <p>{props?.name?.toUpperCase()}</p>}</div>
+    <div style={styles} onClick={getPokemonDetails}>
+      <div>{name && <p>{name.toUpperCase()}</p>}</div>
       <div>
-        {props?.id && props?.id == 0 ? <p>1</p> : <p>{props?.id + 1}</p>}
+        <p>{id}</p>
       </div>
     </div>
   );
 };
 
-export default PokemonTile;
+export default memo(PokemonTile);

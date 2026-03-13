@@ -25,15 +25,16 @@ const PokemonDetail = () => {
   const navigate = useNavigate();
   const routeParams = useParams();
 
-  const pokemonStats = useCallback((stats: any) => {
-    const statsMap = new Map();
-    stats?.forEach((statDetails: any, i: number) => {
-      let keyName = statDetails.stat?.name,
-        value = statDetails.base_stat;
-      statsMap.set(keyName, value);
-      console.log(statsMap);
-      setStatsMap(Object.fromEntries(statsMap));
+  const pokemonStats = useCallback((stats: any[]) => {
+    const statsMapLocal = new Map<string, number>();
+    stats?.forEach((statDetails: any) => {
+      const keyName = statDetails.stat?.name;
+      const value = statDetails.base_stat;
+      if (keyName) {
+        statsMapLocal.set(keyName, value);
+      }
     });
+    setStatsMap(Object.fromEntries(statsMapLocal));
   }, []);
 
   const backToList = useCallback(() => {

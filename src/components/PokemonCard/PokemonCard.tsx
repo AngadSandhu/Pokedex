@@ -1,13 +1,6 @@
-import { useEffect, useState } from "react";
 import pokemoncardStyles from "./PokemonCard.module.css";
 
 const PokemonCard = (props: any) => {
-  const [imageURL, setImageURL] = useState("");
-  useEffect(() => {
-    console.log("Card Props", props);
-    setImageURL(props?.image);
-  }, []);
-
   return (
     <div>
       <div className={pokemoncardStyles.cardContainer}>
