@@ -1,52 +1,79 @@
 .parallaxContainer {
-  margin: 0;
-  padding: 0;
-  perspective: 1px;
-  transform-style: preserve-3d;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  font-family: "Lucid";
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  min-height: 320px;
+  max-height: 420px;
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+}
+
+/* Fixed background = classic parallax: image stays in place while section scrolls */
+.parallaxLayer {
+  position: absolute;
+  inset: 0;
+  background-image: url(../../assets/images/pokemon.jpeg);
+  background-size: cover;
+  background-position: 50% 30%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.parallaxOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(15, 23, 42, 0.5) 50%,
+    rgba(30, 41, 59, 0.65) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 .parallaxHeader {
-  box-sizing: border-box;
-  min-height: 100vh;
-  padding: 30vw 0 5vw;
   position: relative;
-  transform-style: inherit;
-  width: 100vw;
+  z-index: 1;
+  text-align: center;
+  margin: 0;
 }
 
 .parallaxHeader h1 {
-  margin-top: -100px;
-}
-
-.parallaxHeader,
-.parallaxHeader:before {
-  background: 50% 50% / cover;
-}
-
-.parallaxHeader::before {
-  bottom: 0;
-  content: "";
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-  background-image: url(../../assets/images/pokemon.jpeg);
-  background-size: cover;
-  transform-origin: center center 0;
-  transform: translateZ(-1px) scale(2);
-  z-index: -1;
-  min-height: 100vh;
-}
-
-.parallaxHeader * {
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-align: center;
   margin: 0;
-  padding: 1em 0;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  text-shadow: 0 2px 20px rgba(15, 23, 42, 0.6);
+}
+
+.parallaxHeader p {
+  margin: 0.5rem 0 0;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .parallaxContainer {
+    height: 40vh;
+    min-height: 240px;
+    max-height: 320px;
+  }
+
+  /* Fallback: no fixed attachment on small viewports to avoid iOS issues */
+  .parallaxLayer {
+    background-attachment: scroll;
+  }
 }

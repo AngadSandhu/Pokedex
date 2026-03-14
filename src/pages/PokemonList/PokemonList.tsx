@@ -40,31 +40,57 @@ const PokemonList = () => {
   };
 
   return (
-    <React.Fragment>
-      <ButtonDock
-        onPrev={handlePrev}
-        onNext={handleNext}
-        page={page}
-        isLoading={isLoading}
-      />
-      <div className={listStyles.listContainer}>
-        {pokemonList &&
-          pokemonList.map((pokemon: any, index: number) => {
-            const url: string = pokemon.url || "";
-            const match = url.match(/\/pokemon\/(\d+)\//);
-            const pokemonId = match ? parseInt(match[1], 10) : index + 1;
+    <div className={listStyles.page}>
+      <div className={listStyles.inner}>
+        <div className={listStyles.header}>
+          <div className={listStyles.titleBlock}>
+            <h1>Pok&eacute;dex</h1>
+            <p>
+              Browse the roster. Tap a Pok&eacute;mon tile to dive into its stats.
+            </p>
+          </div>
+          <div className={listStyles.pagePill}>Page {page}</div>
+        </div>
 
-            return (
-              <PokemonTile
-                key={pokemonId}
-                id={pokemonId}
-                url={pokemon.url}
-                name={pokemon.name}
-              />
-            );
-          })}
+        <div className={listStyles.controlsRow}>
+          <span className={listStyles.hint}>
+            Use the controls to flip through the generations.
+          </span>
+          <ButtonDock
+            onPrev={handlePrev}
+            onNext={handleNext}
+            page={page}
+            isLoading={isLoading}
+          />
+        </div>
+
+        <div className={listStyles.listShell}>
+          {isLoading && (
+            <div className={listStyles.loadingOverlay}>Loading Pok&eacute;mon...</div>
+          )}
+          <div className={listStyles.listContainer}>
+            {pokemonList &&
+              pokemonList.map((pokemon: any, index: number) => {
+                const url: string = pokemon.url || "";
+                const match = url.match(/\/pokemon\/(\d+)\//);
+                const pokemonId = match ? parseInt(match[1], 10) : index + 1;
+
+                return (
+                  <PokemonTile
+                    key={pokemonId}
+                    id={pokemonId}
+                    url={pokemon.url}
+                    name={pokemon.name}
+                  />
+                );
+              })}
+            {!isLoading && pokemonList && pokemonList.length === 0 && (
+              <div className={listStyles.emptyState}>No Pok&eacute;mon found.</div>
+            )}
+          </div>
+        </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
