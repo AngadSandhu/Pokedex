@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const baseStyles: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "flex-end",
+  alignItems: "stretch",
   background:
     "radial-gradient(circle at 0 0, rgba(251, 191, 36, 0.16), transparent 55%), radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.18), transparent 55%), rgba(15, 23, 42, 0.96)",
   width: "10.5em",
@@ -37,6 +37,20 @@ const idChipStyles: React.CSSProperties = {
   color: "#fefce8",
 };
 
+const imageShellStyles: React.CSSProperties = {
+  flex: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const imageStyles: React.CSSProperties = {
+  width: "64px",
+  height: "64px",
+  objectFit: "contain",
+  filter: "drop-shadow(0 8px 14px rgba(15, 23, 42, 0.7))",
+};
+
 type PokemonTileProps = {
   id: number;
   name: string;
@@ -49,6 +63,8 @@ const PokemonTile = ({ id, name }: PokemonTileProps) => {
   const getPokemonDetails = () => {
     navigate(`/pokemon/id=${id}`);
   };
+
+  const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
   const cardStyles: React.CSSProperties = {
     ...baseStyles,
@@ -66,6 +82,14 @@ const PokemonTile = ({ id, name }: PokemonTileProps) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={nameStyles}>{name && <p>{name.toUpperCase()}</p>}</div>
+      <div style={imageShellStyles}>
+        <img
+          src={spriteUrl}
+          alt={name}
+          style={imageStyles}
+          loading="lazy"
+        />
+      </div>
       <div style={idChipStyles}>
         <span>#{id.toString().padStart(3, "0")}</span>
       </div>

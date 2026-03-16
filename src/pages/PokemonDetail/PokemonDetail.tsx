@@ -56,6 +56,12 @@ const PokemonDetail = () => {
     }
   }, [pokemonStats, routeParams.id]);
 
+  const heroImage =
+    details?.sprites?.other?.["official-artwork"]?.front_default ||
+    details?.sprites?.other?.home?.front_default ||
+    details?.sprites?.front_default ||
+    "";
+
   return (
     <div className={componentStyles.page}>
       <div className={componentStyles.topBar}>
@@ -84,20 +90,18 @@ const PokemonDetail = () => {
           <div className={componentStyles.loadingOverlay}>Loading details...</div>
         )}
         <div className={componentStyles.imageHolder}>
-          {details &&
-            details?.sprites &&
-            details?.sprites?.other &&
-            details?.sprites?.other?.home && (
-              <PokemonCard
-                name={details.name}
-                image={details.sprites.other.home.front_default}
-                id={details.id}
-                types={
-                  details.types?.map((t: any) => t?.type?.name).filter(Boolean) ??
-                  []
-                }
-              />
-            )}
+          {details && heroImage && (
+            <PokemonCard
+              name={details.name}
+              image={heroImage}
+              id={details.id}
+              types={
+                details.types?.map((t: any) => t?.type?.name).filter(Boolean) ??
+                []
+              }
+              variant="detail"
+            />
+          )}
         </div>
         <div className={componentStyles.details}>
           <div className={componentStyles.pokeCard}>
@@ -152,62 +156,84 @@ const PokemonDetail = () => {
 
             {details && (details.types?.length ?? 0) > 0 && (
               <>
-                <div className={componentStyles.statsHeader}>
-                  <span><FontAwesomeIcon icon={faLayerGroup} /> Types</span>
-                </div>
-                <div className={componentStyles.typesWrap}>
-                  {(details.types ?? []).map((t: any, i: number) => (
-                    <span key={i} className={componentStyles.typeChip}>
-                      {t?.type?.name ?? ""}
-                    </span>
-                  ))}
+                <div className={componentStyles.sectionDivider} />
+                <div className={componentStyles.sectionBlock}>
+                  <div className={componentStyles.statsHeader}>
+                    <FontAwesomeIcon icon={faLayerGroup} />
+                    <span>Types</span>
+                  </div>
+                  <div className={componentStyles.typesWrap}>
+                    {(details.types ?? []).map((t: any, i: number) => {
+                      const typeName = t?.type?.name ?? "";
+                      const typeClass = componentStyles[`typeChip_${typeName}`] ?? componentStyles.typeChip_default;
+                      return (
+                        <span key={i} className={`${componentStyles.typeChip} ${typeClass}`}>
+                          {typeName}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </div>
               </>
             )}
 
             {details && (details.abilities?.length ?? 0) > 0 && (
               <>
-                <div className={componentStyles.statsHeader}>
-                  <span><FontAwesomeIcon icon={faWandMagicSparkles} /> Abilities</span>
+                <div className={componentStyles.sectionDivider} />
+                <div className={componentStyles.sectionBlock}>
+                  <div className={componentStyles.statsHeader}>
+                    <FontAwesomeIcon icon={faWandMagicSparkles} />
+                    <span>Abilities</span>
+                  </div>
+                  <ul className={componentStyles.abilityList}>
+                    {(details.abilities ?? []).map((a: any, i: number) => (
+                      <li key={i}>
+                        {a?.ability?.name ?? ""}
+                        {a.is_hidden && (
+                          <span className={componentStyles.hiddenBadge}> hidden</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className={componentStyles.abilityList}>
-                  {(details.abilities ?? []).map((a: any, i: number) => (
-                    <li key={i}>
-                      {a?.ability?.name ?? ""}
-                      {a.is_hidden && (
-                        <span className={componentStyles.hiddenBadge}> hidden</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
               </>
             )}
 
-            <div className={componentStyles.statsHeader}>
-              <span>Base stats</span>
-            </div>
-
-            {Object.keys(statsMap).length > 0 &&
-              Object.keys(statsMap).map((key: any, i) => {
-                const value = statsMap[key];
-                const percent = Math.min(100, Math.round((value / 200) * 100));
-                return (
-                  <div key={i} className={componentStyles.statRow}>
-                    <div className={componentStyles.statLabel}>
-                      <FontAwesomeIcon icon={statIcons[i]} /> {key.toUpperCase()}
-                    </div>
-                    <div className={componentStyles.statValue}>
-                      <span>{value}</span>
-                      <div className={componentStyles.statBar}>
-                        <div
-                          className={componentStyles.statBarFill}
-                          style={{ width: `${percent}%` }}
-                        />
+            <div className={componentStyles.sectionDivider} />
+            <div className={componentStyles.sectionBlock}>
+              <div className={componentStyles.statsHeader}>
+                <span>Base stats</span>
+              </div>
+              {Object.keys(statsMap).length > 0 &&
+                Object.keys(statsMap).map((key: any, i) => {
+                  const value = statsMap[key];
+                  const percent = Math.min(100, Math.round((value / 200) * 100));
+                  const barClass =
+                    value >= 150
+                      ? componentStyles.max
+                      : value >= 100
+                        ? componentStyles.high
+                        : value >= 50
+                          ? componentStyles.mid
+                          : componentStyles.low;
+                  return (
+                    <div key={i} className={componentStyles.statRow}>
+                      <div className={componentStyles.statLabel}>
+                        <FontAwesomeIcon icon={statIcons[i]} /> {key.replace("-", " ").toUpperCase()}
+                      </div>
+                      <div className={componentStyles.statValue}>
+                        <span>{value}</span>
+                        <div className={componentStyles.statBar}>
+                          <div
+                            className={`${componentStyles.statBarFill} ${barClass}`}
+                            style={{ width: `${percent}%` }}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>

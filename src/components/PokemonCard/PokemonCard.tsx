@@ -5,17 +5,18 @@ type PokemonCardProps = {
   image: string;
   id?: number;
   types?: string[];
+  variant?: "default" | "detail";
 };
 
-const PokemonCard = ({ name, image, id, types }: PokemonCardProps) => {
+const PokemonCard = ({ name, image, id, types, variant = "default" }: PokemonCardProps) => {
   const primaryType = types && types.length > 0 ? types[0] : undefined;
 
   return (
     <div className={pokemoncardStyles.cardWrapper}>
       <article
         className={`${pokemoncardStyles.cardContainer} ${
-          primaryType ? pokemoncardStyles[`type_${primaryType}`] : ""
-        }`}
+          variant === "detail" ? pokemoncardStyles.detail : ""
+        } ${primaryType && pokemoncardStyles[`type_${primaryType}`] ? pokemoncardStyles[`type_${primaryType}`] : ""}`}
       >
         <header className={pokemoncardStyles.cardHeader}>
           <span className={pokemoncardStyles.badge}>
@@ -40,7 +41,7 @@ const PokemonCard = ({ name, image, id, types }: PokemonCardProps) => {
                 <span
                   key={type}
                   className={`${pokemoncardStyles.typeChip} ${
-                    pokemoncardStyles[`type_${type}`]
+                    pokemoncardStyles[`type_${type}`] ?? ""
                   }`}
                 >
                   {type.toUpperCase()}
