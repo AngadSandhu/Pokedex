@@ -5,7 +5,7 @@ import PokemonLogo from "../../assets/images/PokemonLogo.png";
 const Header = () => {
   return (
     <div className={headerStyles.header}>
-      <img src={PokemonLogo} height={60} width={100} />
+      <img src={PokemonLogo} height={60} width={100} alt="Pokemon logo" />
     </div>
   );
 };
