@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import listStyles from "./PokemonList.module.css";
 import * as PokemonService from "../../services/PokemonService";
 import PokemonTile from "../../components/PokemonTile/PokemonTile";
 import ButtonDock from "../../components/ButtonDock/ButtonDock";
 
 const PokemonList = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [pokemonList, setPokemonList] = useState<any[]>([]);
-  const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const PAGE_SIZE = 20;
+
+  const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10) || 1);
+
+  const goToPage = (nextPage: number) => {
+    const safePage = Math.max(1, nextPage);
+    if (safePage === 1) {
+      setSearchParams({});
+    } else {
+      setSearchParams({ page: String(safePage) });
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -32,11 +44,13 @@ const PokemonList = () => {
   }, [page]);
 
   const handlePrev = () => {
-    setPage((current) => (current > 1 ? current - 1 : current));
+    if (page > 1) {
+      goToPage(page - 1);
+    }
   };
 
   const handleNext = () => {
-    setPage((current) => current + 1);
+    goToPage(page + 1);
   };
 
   return (
@@ -81,6 +95,7 @@ const PokemonList = () => {
                     id={pokemonId}
                     url={pokemon.url}
                     name={pokemon.name}
+                    page={page}
                   />
                 );
               })}

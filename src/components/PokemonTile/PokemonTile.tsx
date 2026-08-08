@@ -55,13 +55,14 @@ type PokemonTileProps = {
   id: number;
   name: string;
   url?: string;
+  page?: number;
 };
 
-const PokemonTile = ({ id, name }: PokemonTileProps) => {
+const PokemonTile = ({ id, name, page = 1 }: PokemonTileProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const getPokemonDetails = () => {
-    navigate(`/pokemon/id=${id}`);
+    navigate(`/pokemon/id=${id}`, { state: { fromPage: page } });
   };
 
   const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;

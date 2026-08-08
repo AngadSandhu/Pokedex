@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import componentStyles from "./PokemonDetail.module.css";
 import { getPokemonDetails } from "../../services/PokemonService";
 import PokemonDetailModel from "../../models/PokemonDetailModel";
@@ -26,6 +26,7 @@ const PokemonDetail = () => {
   const [statsMap, setStatsMap] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const routeParams = useParams();
 
   const pokemonStats = useCallback((stats: any[]) => {
@@ -41,8 +42,13 @@ const PokemonDetail = () => {
   }, []);
 
   const backToList = useCallback(() => {
-    navigate("/pokemon");
-  }, [navigate]);
+    const fromPage = (location.state as { fromPage?: number } | null)?.fromPage;
+    if (fromPage && fromPage > 1) {
+      navigate(`/pokemon?page=${fromPage}`);
+    } else {
+      navigate("/pokemon");
+    }
+  }, [navigate, location.state]);
 
   useEffect(() => {
     if (routeParams.id) {
